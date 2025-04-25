@@ -8,7 +8,15 @@ Hello hello, my fellow pink fairy armadillos!
    ```
    git pull origin Dev
    ```
-2. To switch to a branch, run
+2. **MAKE SURE TO SWITCH TO YOUR WORKING BRANCH BEFORE MAKING ANY CHANGES!!!**
+
+   To check what branch you're currently at, you can either look at the bottom left of your VSCode, or run
+
+   ```
+   git branch
+   ```
+
+   To switch to a branch, run
 
    ```
    git checkout <your name/branch name>
@@ -22,13 +30,7 @@ Hello hello, my fellow pink fairy armadillos!
    git checkout -b <new branch name>
    ```
 
-   Another helpful tip for checking what branch you're currently at
-
-   ```
-   git branch
-   ```
-
-3. When you want to commit your code, it doesn't really matter what branch you're at, because the changes are being committed locally. Feel free to
+3. When you want to commit your code, you know the drill
 
    ```
    git status
