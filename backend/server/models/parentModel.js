@@ -6,7 +6,8 @@ const bcrypt = require('bcryptjs');
 
 const parentSchema = new Schema({
     username: {type: String, required: true, unique: true},
-    password: {type: String, required: true}
+    password: {type: String, required: true},
+    childrenName: [Number] //childrenName will be ObjectID of child linked to the parent in an array
 });
 
 parentSchema.pre('save', function(next) {
