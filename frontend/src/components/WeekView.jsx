@@ -1,6 +1,6 @@
-import DayCard from './DayCard';
+import DayCard from '../components/DayCard';
 
-function WeekView() {
+function WeekView({ chores }) {
   const daysOfWeek = [
     'Sunday',
     'Monday',
@@ -16,7 +16,11 @@ function WeekView() {
       <h2>Week</h2>
       <div>
         {daysOfWeek.map((day, index) => (
-          <DayCard key={index} dayName={day} />
+          <DayCard
+            key={index}
+            day={day}
+            choresForDay={chores.filter((chore) => chore.day === day)}
+          />
         ))}
       </div>
     </div>
