@@ -1,47 +1,91 @@
 import { useState } from 'react';
 
 function Login() {
+  const [isLoginMode, setIsLoginMode] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
 
+    const endpoint = isLoginMode ? '/users/login' : '/users';
+    const payload = isLoginMode
+      ? { email, password }
+      : { email, password, name, children: [] };
+
     try {
-      const response = await fetch('/users/login', {
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();
 
-      if (data.success) {
-        setSuccess(true);
-        setError('');
-        localStorage.setItem('token', data.token);
-        window.location.href = '/dashboard';
+      if (isLoginMode) {
+        if (data.success) {
+          setSuccess(true);
+          setError('');
+          localStorage.setItem('token', data.token);
+          window.location.href = '/dashboard';
+        } else {
+          setError(data.message);
+          setSuccess(false);
+        }
       } else {
-        setError(data.message);
-        setSuccess(false);
+        if (data.insertedId) {
+          setSuccess(true);
+          setError('');
+          setIsLoginMode(true);
+        } else {
+          setError(data.message || 'Failed to create account');
+          setSuccess(false);
+        }
       }
     } catch (err) {
-      console.error('Login error:', err);
+      console.error('Error:', err);
       setError('Something went wrong. Please try again.');
       setSuccess(false);
     }
+  }
+
+  function switchMode() {
+    setIsLoginMode(!isLoginMode);
+    setError('');
+    setSuccess(false);
+    setEmail('');
+    setPassword('');
+    setName('');
   }
 
   return (
     <div>
       <h1>Welcome to ChorePal</h1>
       <div>
-        <h2>Login</h2>
+        <h2>{isLoginMode ? 'Login' : 'Create Account'}</h2>
         <form onSubmit={handleSubmit}>
+          {!isLoginMode && (
+            <>
+              <label htmlFor='name'>Name:</label>
+              <br />
+              <input
+                type='text'
+                id='name'
+                name='name'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+              <br />
+              <br />
+            </>
+          )}
+
           <label htmlFor='email'>Email:</label>
           <br />
           <input
@@ -50,6 +94,7 @@ function Login() {
             name='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <br />
           <br />
@@ -62,15 +107,28 @@ function Login() {
             name='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <br />
           <br />
 
-          <button type='submit'>Login</button>
+          <button type='submit'>
+            {isLoginMode ? 'Login' : 'Create Account'}
+          </button>
         </form>
 
+        <button onClick={switchMode} style={{ marginTop: '10px' }}>
+          {isLoginMode ? 'Create an account' : 'Already have an account? Login'}
+        </button>
+
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        {success && <p style={{ color: 'green' }}>Login successful!</p>}
+        {success && (
+          <p style={{ color: 'green' }}>
+            {isLoginMode
+              ? 'Login successful!'
+              : 'Account created! Please login.'}
+          </p>
+        )}
       </div>
     </div>
   );
