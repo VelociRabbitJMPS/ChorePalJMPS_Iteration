@@ -11,11 +11,13 @@ function Dashboard() {
     dispatch(fetchChores());
   }, [dispatch]);
 
-  if (loading) return <p>Loading chores...</p>;
-  if (error) return <p>Error: {error}</p>;
-
   return (
     <div>
+      {loading && <p>Loading chores...</p>}
+      {error && <p>Error: {error}</p>}
+      {chores.map((chore, index) => (
+        <p key={index}>{chore.choreName}</p>
+      ))}
       <WeekView chores={chores} />
     </div>
   );

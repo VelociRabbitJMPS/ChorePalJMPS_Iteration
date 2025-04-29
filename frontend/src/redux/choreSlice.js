@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchChores = createAsyncThunk('chores/fetchChores', async () => {
-  const response = await fetch('/chores');
+  const response = await fetch('http://localhost:3000/chores');
   if (!response.ok) {
     throw new Error('Failed to fetch chores');
   }

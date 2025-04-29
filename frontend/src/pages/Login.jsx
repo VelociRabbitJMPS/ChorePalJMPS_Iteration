@@ -8,6 +8,8 @@ function Login() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
+  const BASE_URL = 'http://localhost:3000';
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -17,7 +19,7 @@ function Login() {
       : { email, password, name, children: [] };
 
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch(`${BASE_URL}${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
