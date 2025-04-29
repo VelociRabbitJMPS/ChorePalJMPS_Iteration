@@ -13,6 +13,8 @@ function Dashboard() {
 
   return (
     <div>
+      <div className='bg-red-500 text-white p-4'>Tailwind should work</div>
+
       {loading && <p>Loading chores...</p>}
       {error && <p>Error: {error}</p>}
       {chores.map((chore, index) => (
