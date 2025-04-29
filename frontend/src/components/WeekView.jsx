@@ -1,30 +1,27 @@
 import DayCard from '../components/DayCard';
 
-function WeekView({ chores }) {
-  const daysOfWeek = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ];
+const daysOfWeek = [
+  'monday',
+  'tuesday',
+  'wednesday',
+  'thursday',
+  'friday',
+  'saturday',
+  'sunday',
+];
 
+const WeekView = ({ chores }) => {
   return (
-    <div>
-      <h2>Week</h2>
-      <div>
-        {daysOfWeek.map((day, index) => (
-          <DayCard
-            key={index}
-            day={day}
-            choresForDay={chores.filter((chore) => chore.day === day)}
-          />
-        ))}
-      </div>
+    <div className='weekview-container'>
+      {daysOfWeek.map((day) => {
+        const choresForDay = chores.filter(
+          (chore) => chore.day.toLowerCase() === day
+        );
+
+        return <DayCard key={day} day={day} chores={choresForDay} />;
+      })}
     </div>
   );
-}
+};
 
 export default WeekView;

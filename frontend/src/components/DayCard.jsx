@@ -1,18 +1,20 @@
-function DayCard({ day, choresForDay }) {
+const DayCard = ({ day, chores }) => {
   return (
-    <div>
-      <h3>{day}</h3>
-      <div>
-        {choresForDay.map((chore) => (
-          <div key={chore._id}>{chore.choreName}</div>
-        ))}
-        <h4>Kevin</h4>
+    <div className='daycard'>
+      <h3>{day.toUpperCase()}</h3>
+      {chores.length > 0 ? (
         <ul>
-          <li>Do the dishes</li>
+          {chores.map((chore) => (
+            <li key={chore._id}>
+              {chore.childName} - {chore.choreName}
+            </li>
+          ))}
         </ul>
-      </div>
+      ) : (
+        <p>No chores assigned.</p>
+      )}
     </div>
   );
-}
+};
 
 export default DayCard;
