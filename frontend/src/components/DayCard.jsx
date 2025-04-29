@@ -1,4 +1,9 @@
+import { useState } from 'react';
+import AddChoreForm from './AddChore';
+
 const DayCard = ({ day, chores }) => {
+  const [showAddForm, setShowAddForm] = useState(false);
+
   return (
     <div className='bg-primaryDark text-white rounded-2xl shadow-lg p-5 flex flex-col gap-5 mt-6 w-96'>
       <h3 className='text-2xl font-bold tracking-wide'>{day.toUpperCase()}</h3>
@@ -19,9 +24,16 @@ const DayCard = ({ day, chores }) => {
           <p className='text-sm text-white/70 italic'>No chores assigned.</p>
         )}
 
-        <button className='self-start bg-accentOrange text-white rounded-full px-4 py-2 text-sm font-semibold hover:bg-accentOrangeDark transition duration-200'>
+        <button
+          onClick={() => setShowAddForm(true)}
+          className='self-start bg-accentOrange text-white rounded-full px-4 py-2 text-sm font-semibold hover:bg-accentOrangeDark transition duration-200'
+        >
           Add New Chore
         </button>
+
+        {showAddForm && (
+          <AddChoreForm day={day} onClose={() => setShowAddForm(false)} />
+        )}
       </div>
     </div>
   );
