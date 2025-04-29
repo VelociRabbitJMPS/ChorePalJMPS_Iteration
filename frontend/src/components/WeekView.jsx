@@ -12,7 +12,7 @@ const daysOfWeek = [
 
 const WeekView = ({ chores }) => {
   return (
-    <div className='weekview-container'>
+    <div className='min-h-screen flex items-center'>
       {daysOfWeek.map((day) => {
         const choresForDay = chores.filter(
           (chore) => chore.day.toLowerCase() === day

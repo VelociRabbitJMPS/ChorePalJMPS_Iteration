@@ -1,5 +1,30 @@
 @import 'tailwindcss';
 
+@theme {
+  --color-primaryDark: #1a2b4c; /* navy blue */
+  --color-accentOrange: #ff6600; /* bright orange */
+  --color-accentOrangeDark: #cc5200; /* darker orange on hover */
+  --color-surface: #2e3a59; /* lighter navy background */
+  --color-lightGray: #f7f9fa; /* page background */
+
+  --color-navy: #0b2b4b;
+  --color-teal: #4c8b83;
+  --color-sky: #b4e9f3;
+  --color-orange: #f26c3c;
+  --color-shadowOrange: #d95629;
+
+  --color-primaryBlue: #143e61;
+  --color-primaryOrange: #dc6939;
+  --color-accentCyan: #5fbfcb;
+  --color-backgroundLight: #eef1f1;
+
+  --sans: 'Inter', 'Arial', sans-serif;
+  --serif: 'Georgia', serif;
+
+  --glow: 0 0 20px rgba(255, 95, 95, 0.5);
+  --card: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 /* Set up default global styles */
 :root {
   color-scheme: light dark;
@@ -11,9 +36,9 @@ body {
   background-color: #0a2540; /* Navy*/
 }
 
-h1 {
-  color: #143e61; /* Primary Dark (Navy Blue) */
-}
+/* h1 {
+  color: #143e61;
+} */
 
 a {
   color: #5fbfcb; /* Accent Teal */

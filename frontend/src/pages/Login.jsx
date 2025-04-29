@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './Login.css';
 
 function Login() {
   const [isLoginMode, setIsLoginMode] = useState(true);
@@ -66,10 +67,12 @@ function Login() {
   }
 
   return (
-    <div>
-      <h1>Welcome to ChorePal</h1>
+    <div className='wrapper'>
       <div>
-        <h2>{isLoginMode ? 'Login' : 'Create Account'}</h2>
+        <h2>
+          Welcome to ChorePal<br></br>
+          {isLoginMode ? 'Login' : 'Create Account'}
+        </h2>
         <form onSubmit={handleSubmit}>
           {!isLoginMode && (
             <>
