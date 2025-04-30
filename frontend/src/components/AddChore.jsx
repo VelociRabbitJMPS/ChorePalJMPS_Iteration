@@ -30,14 +30,8 @@ const AddChoreForm = ({ day, onClose }) => {
   };
 
   return (
-    <div
-      style={{
-        background: 'white',
-        padding: '20px',
-        border: '1px solid black',
-      }}
-    >
-      <h3>Add New Chore for {day}</h3>
+    <div>
+      <h3>Add New Chore for {day.toUpperCase()}</h3>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Chore Name:</label>

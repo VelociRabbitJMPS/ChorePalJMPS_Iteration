@@ -55,7 +55,7 @@ button {
 @media (prefers-color-scheme: light) {
   :root {
     color: #143e61; /* Primary Dark */
-    background-color: #ffffff; /* White background */
+    background-color: #0a2540; /* White background */
   }
   a:hover {
     color: #dc6939; /* Accent Orange */
