@@ -1,10 +1,23 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchChores } from '../redux/choreSlice';
+import { useEffect } from 'react';
 import WeekView from '../components/WeekView';
+import Navbar from '../components/Navbar';
 
 function Dashboard() {
+  const dispatch = useDispatch();
+  const { chores, loading, error } = useSelector((state) => state.chores);
+
+  useEffect(() => {
+    dispatch(fetchChores());
+  }, [dispatch]);
+
   return (
     <div>
-      <h1>ChorePal</h1>
-      <WeekView />
+      <Navbar />
+      {loading && <p>Loading chores...</p>}
+      {error && <p>Error: {error}</p>}
+      <WeekView chores={chores} />
     </div>
   );
 }

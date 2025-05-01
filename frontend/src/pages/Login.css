@@ -1,0 +1,91 @@
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-lightGray);
+  padding: 1rem;
+  font-family: 'Inter', sans-serif;
+}
+
+form {
+  background-color: var(--color-primaryDark);
+  color: white;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  width: 100%;
+  max-width: 24rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+label {
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+input {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background-color: #3b4766;
+  color: white;
+  border: none;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+input:focus {
+  outline: 2px solid var(--color-accentOrange);
+}
+
+button {
+  background-color: var(--color-accentOrange);
+  color: white;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--color-accentOrangeDark);
+}
+
+.toggle-button {
+  background-color: transparent;
+  color: var(--color-accentOrange);
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+}
+
+.error {
+  color: #ff6b6b;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.success {
+  color: #4caf50;
+  font-size: 0.875rem;
+  text-align: center;
+}
