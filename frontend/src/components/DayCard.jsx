@@ -27,17 +27,28 @@ const DayCard = ({ day, chores }) => {
           chore._id === choreId ? choreWithUpdatedStatus : chore
         )
       );
-
-      await fetch(`http://localhost:3000/chores/${choreId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(choreWithUpdatedStatus),
-      });
+      try {
+        const response = await fetch(
+          `http://localhost:3000/chores/${choreId}`,
+          {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(choreWithUpdatedStatus),
+          }
+        );
+        if (!response.ok) {
+          throw new Error('Failed to update chore');
+        }
+      } catch (error) {
+        console.error(`Error: ${error.message}`);
+      }
     }
     if (value === 'Delete') {
       setChoreList((prevChores) =>
+        //update the UI by removing the chores locally
         prevChores.filter((chore) => chore._id !== choreId)
       );
+      //delete chore from the database
       await fetch(`http://localhost:3000/chores/${choreId}`, {
         method: 'DELETE',
       });
