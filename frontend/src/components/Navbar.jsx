@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <div className='flex items-center'>
-      <img
-        src='../../public/chorepal-logo-optimized.png'
-        width='150'
-        height='150'
-      ></img>
+      <img src='/chorepal-logo-optimized.png' width='150' height='150'></img>
       <div>
         <h1 className='text-6xl text-white font-extrabold drop-shadow-sm'>
           ChorePal

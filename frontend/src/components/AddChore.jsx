@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addChore, fetchChores } from '../redux/choreSlice';
-
+//we have to work on iteration project
 const AddChoreForm = ({ day, onClose }) => {
   const dispatch = useDispatch();
   const [choreName, setChoreName] = useState('');

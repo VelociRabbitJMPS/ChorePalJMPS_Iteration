@@ -11,6 +11,10 @@ let choreRoutes = express.Router();
 choreRoutes.route('/chores').get(async (req, res) => {
   let db = database.getDb();
   let data = await db.collection('chores').find({}).toArray();
+  data = data.map((chore) => ({
+    ...chore,
+    status: chore.isCompleted ? 'Completed' : 'Pending',
+  }));
   if (data.length > 0) {
     res.json(data);
   } else {
