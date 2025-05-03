@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import AddChoreForm from './AddChore';
+import { useDispatch } from 'react-redux';
+import { fetchChores } from '../redux/choreSlice';
 
 const DayCard = ({ day, chores }) => {
   const [showAddForm, setShowAddForm] = useState(false);
@@ -9,7 +11,7 @@ const DayCard = ({ day, chores }) => {
   useEffect(() => {
     setChoreList(chores);
   }, [chores]);
-
+  const dispatch = useDispatch();
   const handleDropdownChange = async (e, choreId) => {
     const value = e.target.value;
     if (value === 'Completed') {
@@ -42,6 +44,7 @@ const DayCard = ({ day, chores }) => {
       } catch (error) {
         console.error(`Error: ${error.message}`);
       }
+      dispatch(fetchChores());
     }
     if (value === 'Delete') {
       setChoreList((prevChores) =>
@@ -52,8 +55,10 @@ const DayCard = ({ day, chores }) => {
       await fetch(`http://localhost:3000/chores/${choreId}`, {
         method: 'DELETE',
       });
+      dispatch(fetchChores());
     }
   };
+
   return (
     <div className='bg-primaryDark text-white rounded-2xl shadow-lg p-5 flex flex-col gap-5 mt-6 w-96'>
       <h3 className='text-2xl font-bold tracking-wide'>{day.toUpperCase()}</h3>
