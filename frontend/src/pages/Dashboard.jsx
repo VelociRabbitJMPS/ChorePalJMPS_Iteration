@@ -3,6 +3,7 @@ import { fetchChores } from '../redux/choreSlice';
 import { useEffect } from 'react';
 import WeekView from '../components/WeekView';
 import Navbar from '../components/Navbar';
+import ProgressWeekly from '../utils/ProgressWeekly';
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ function Dashboard() {
       {loading && <p>Loading chores...</p>}
       {error && <p>Error: {error}</p>}
       <WeekView chores={chores} />
+      <ProgressWeekly choreList={chores} />
     </div>
   );
 }
