@@ -5,10 +5,10 @@ const Navbar = () => {
     <div className='flex items-center'>
       <img src='/chorepal-logo-optimized.png' width='150' height='150'></img>
       <div>
-        <h1 className='text-6xl text-white font-extrabold drop-shadow-sm'>
+        <h1 className='text-6xl text-black font-extrabold drop-shadow-sm'>
           ChorePal
         </h1>
-        <h3 className='text-2xl font-semibold text-accentOrange mt-2'>
+        <h3 className='text-2xl font-semibold text-orange-800 mt-2'>
           Plan it. Do it.
         </h3>
       </div>

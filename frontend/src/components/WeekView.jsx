@@ -13,7 +13,7 @@ const daysOfWeek = [
 const WeekView = ({ chores }) => {
   return (
     <div>
-      <div className='grid grid-cols-4 gap-x-50 gap-y-10'>
+      <div className='grid grid-cols-4 gap-x-5 gap-y-5'>
         {daysOfWeek.map((day) => {
           const choresForDay = chores.filter(
             (chore) => chore?.day?.toLowerCase?.() === day
