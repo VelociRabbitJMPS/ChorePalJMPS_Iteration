@@ -19,6 +19,7 @@ function Dashboard() {
       {loading && <p>Loading chores...</p>}
       {error && <p>Error: {error}</p>}
       <WeekView chores={chores} />
+      <br></br>
       <ProgressWeekly choreList={chores} />
     </div>
   );
