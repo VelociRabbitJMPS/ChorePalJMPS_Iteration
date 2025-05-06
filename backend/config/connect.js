@@ -1,3 +1,5 @@
+//moved this file from backend/ to backend/config/ because it is config code, not app logic
+
 const { MongoClient, ServerApiVersion } = require('mongodb');
 require('dotenv').config({ path: './config.env' });
 

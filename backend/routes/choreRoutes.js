@@ -1,5 +1,5 @@
 const express = require('express');
-const database = require('./connect');
+const database = require('../connect');
 const ObjectId = require('mongodb').ObjectId;
 const jwt = require('jsonwebtoken');
 require('dotenv').config({ path: './config.env' });

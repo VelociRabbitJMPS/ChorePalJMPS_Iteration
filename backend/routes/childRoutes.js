@@ -1,5 +1,7 @@
 const express = require('express');
-const database = require('./connect');
+//changed file path to connect.js to match new MVC
+const database = require('../config/connect.js')
+// const database = require('./connect');
 //imports 12-byte Binary JSON (bson) object type
 const ObjectId = require('mongodb').ObjectId;
 const jwt = require('jsonwebtoken');
