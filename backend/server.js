@@ -1,18 +1,20 @@
-const connect = require('./connect'); // module that handles connecting to mongodb
+//updated path to reflect newly modularized MVC Pattern
+const connect = require('./config/connect'); // module that handles connecting to mongodb
 const express = require('express');
 const cors = require('cors'); //cors allows frontend to talk to backend
 
 //do we still need this route? should we change it to a parent route and add a parent controller?
-const users = require('./userRoutes');
-const chores = require('./choreRoutes');
-const child = require('./childRoutes');
+//updated paths to reflect newly modularized MVC pattern 
+//const users = require('./routes/userRoutes');
+const chores = require('./routes/choreRoutes');
+const child = require('./routes/childRoutes');
 
 const app = express();
 const PORT = 3000;
 
 app.use(cors()); //allows requests from react frontend
 app.use(express.json()); //parses incoming json data in request body
-app.use(users);
+//app.use(users);
 app.use(chores);
 app.use(child);
 
