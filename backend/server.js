@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors'); //cors allows frontend to talk to backend
 
 //updated paths to reflect newly modularized MVC pattern 
-const users = require('./routes/userRoutes');
+// const users = require('./routes/userRoutes');
 const chores = require('./routes/choreRoutes');
 const child = require('./routes/childRoutes');
 

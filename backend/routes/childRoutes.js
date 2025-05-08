@@ -9,27 +9,19 @@ const ObjectId = require('mongodb').ObjectId;
 const jwt = require('jsonwebtoken');
 require('dotenv').config({ path: './config.env' });
 
-let childRoutes = express.Router();
+const childRoutes = express.Router();
 
-// #1 retrieve all children
-// http://localhost:3000/chores WHAT IS THIS HERE FOR
+// #1 retrieve all children from http://localhost:3000/children 
 childRoutes.get('/children', childController.getAllChildren);
 
-// #2 retrieve one child
-// http://localhost:3000/chores/id
-// childRoutes.route('/children/:id').get(async (req, res) => {
-//   let db = database.getDb();
-//   let data = await db
-//     .collection('child')
-//     .findOne({ _id: new ObjectId(req.params.id) });
-//   if (Object.keys(data).length > 0) {
-//     res.json(data);
-//   } else {
-//     throw new Error('Data was not found :(');
-//   }
-// });
-// // #3 create one
-// // http://localhost:3000/chores
+// #2 retrieve one child from http://localhost:3000/children
+childRoutes.get('/children/:id', childController.getOneChild);
+
+// #3 create one child and add to card at http://localhost:3000/
+childRoutes.post('children/', childController.createOneChild);
+
+// #4 update one child's data 
+childRoutes.post('/children', childController.updateOneChild)
 // childRoutes.route('/children').post(async (req, res) => {
 //   let db = database.getDb();
 //   let mongoObject = {
