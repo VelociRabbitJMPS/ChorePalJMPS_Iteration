@@ -25,7 +25,7 @@ const getAllChildren = async (req, res) => {
     }
 };
 
-// #2 GET handle request to retrieve one child by ID
+// #2 GET handles request to retrieve one child by ID
 const getOneChild = async (req, res) => {
     try {
         const db = database.getDb();
@@ -46,7 +46,7 @@ const getOneChild = async (req, res) => {
     }
 }
 
-// #3 POST handle request to post new child
+// #3 POST handles request to create new child
 const createOneChild = async (req, res) => {
     try {
         const db = database.getDb();
@@ -60,56 +60,64 @@ const createOneChild = async (req, res) => {
     }
 }
 
-//route to post child
-// childRoutes.route('/children').post(async (req, res) => {
-    //   let db = database.getDb();
-    //   let mongoObject = {
-    //     username: req.body.username,
-    //   };
-    //   let data = await db.collection('child').insertOne(mongoObject);
-    //   res.json(data);
-    // });
-
-///////////////////////////////////////////////////////////////////////////////
-
-//childRoutes.route('/children').post(async (req, res) => {
-    //   let db = database.getDb();
-    //   let mongoObject = {
-    //     username: req.body.username,
-    //   };
-    //   let data = await db.collection('child').insertOne(mongoObject);
-    //   res.json(data);
-    // });
-    // // #4 update one
-    // // http://localhost:3000/chores/id
-    // childRoutes.route('/children/:id').put(async (req, res) => {
-    //   let db = database.getDb();
-    //   let mongoObject = {
-    //     $set: {
-    //       username: req.body.username,
-    //     },
-    //   };
-    //   let data = await db
-    //     .collection('child')
-    //     .updateOne({ _id: new ObjectId(req.params.id) }, mongoObject);
-    //   res.json(data);
-    // });
-    
-    // // #5 delete one
-    // // http://localhost:3000/chores/id
-    // childRoutes.route('/children/:id').delete(async (req, res) => {
-    //   let db = database.getDb();
-    //   let data = await db
-    //     .collection('child')
-    //     .deleteOne({ _id: new ObjectId(req.params.id) });
-    //   res.json(data);
-    // });
-    
-
+// #4 PUT handles updating child data by ID
+const updateOneChild = async (req, res) => {
+    const id = req.params.id;
+  
+    if (!ObjectId.isValid(id)) {
+      return res.status(400).json({ message: 'Invalid child ID format' });
+    }
+  
+    try {
+      const db = database.getDb();
+      const updatedData = {
+        $set: {
+          username: req.body.username,
+        },
+      };
+  
+      const result = await db
+        .collection('child')
+        .updateOne({ _id: new ObjectId(id) }, updatedData);
+  
+      if (result.matchedCount === 0) {
+        res.status(404).json({ message: 'Child not found' });
+      } else {
+        res.status(200).json({ message: 'Child updated', result });
+      }
+    } catch (error) {
+      res.status(500).json({ message: 'Server error', error: error.message });
+    }
+  };
+  
+// #5 DELETE handles removing child by ID
+const deleteOneChild = async (req, res) => {
+    const id = req.params.id;
+  
+    if (!ObjectId.isValid(id)) {
+      return res.status(400).json({ message: 'Invalid child ID format' });
+    }
+  
+    try {
+      const db = database.getDb();
+      const result = await db
+        .collection('child')
+        .deleteOne({ _id: new ObjectId(id) });
+  
+      if (result.deletedCount === 1) {
+        res.status(200).json({ message: 'Child deleted' });
+      } else {
+        res.status(404).json({ message: 'Child not found' });
+      }
+    } catch (error) {
+      res.status(500).json({ message: 'Server error', error: error.message });
+    }
+  };
     
  module.exports = {
     getAllChildren,
     getOneChild,
     createOneChild,
+    updateOneChild,
     deleteOneChild,
  };
