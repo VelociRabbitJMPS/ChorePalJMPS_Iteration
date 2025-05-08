@@ -72,7 +72,7 @@ const createOneChild = async (req, res) => {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-childRoutes.route('/children').post(async (req, res) => {
+//childRoutes.route('/children').post(async (req, res) => {
     //   let db = database.getDb();
     //   let mongoObject = {
     //     username: req.body.username,
