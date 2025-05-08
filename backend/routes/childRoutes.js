@@ -12,17 +12,18 @@ require('dotenv').config({ path: './config.env' });
 const childRoutes = express.Router();
 
 // #1 route to retrieve all children from http://localhost:3000/children 
-childRoutes.get('/children', childController.getAllChildren);
+childRoutes.get('/', childController.getAllChildren);
 
 // #2 route to retrieve one child from http://localhost:3000/children by id
-childRoutes.get('/children/:id', childController.getOneChild);
+childRoutes.get('/:id', childController.getOneChild);
 
 // #3 route to create one child and add to card at http://localhost:3000/
-childRoutes.post('children/', childController.createOneChild);
+childRoutes.post('/', childController.createOneChild);
 
 // #4 route to update one child's data by id
-childRoutes.put('/children', childController.updateOneChild)
+childRoutes.put('/:id', childController.updateOneChild);
 
 // #5 route to delete one child by id
+childRoutes.delete('/:id', childController.deleteOneChild);
 
 module.exports = childRoutes;

@@ -5,17 +5,17 @@ const cors = require('cors'); //cors allows frontend to talk to backend
 
 //updated paths to reflect newly modularized MVC pattern 
 // const users = require('./routes/userRoutes');
-const chores = require('./routes/choreRoutes');
-const child = require('./routes/childRoutes');
+const choreRoutes = require('./routes/choreRoutes');
+const childRoutes = require('./routes/childRoutes');
 
 const app = express();
 const PORT = 3000;
 
 app.use(cors()); //allows requests from react frontend
-app.use(express.json()); //parses incoming json data in request body
+app.use(express.json()); //parses incoming json data in request bodies
 //app.use(users);
-app.use(chores);
-app.use(child);
+app.use("/children", choreRoutes);
+app.use("/children", childRoutes);
 
 //connect to DB, then start server
 async function startServer() {
@@ -25,7 +25,8 @@ async function startServer() {
       console.log(`Server is running on port ${PORT}`);
     });
   } catch (err) {
-    console.error(`Failed to start server due to DB connection error.`);
+    //added error.message
+    console.error(`Failed to start server due to DB connection error.`, err.message);
   }
 }
 startServer();
