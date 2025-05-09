@@ -6,6 +6,7 @@ const { ObjectId } = require('mongodb');
 const getAllChildren = async (req, res) => {
     //attempts to retrieve child(ren) data found in collection and store data in an array
     try {
+        console.log("are we reading the GET all request or no?")
         const db = database.getDb();
         const children = await db
             .collection('child')
@@ -49,12 +50,13 @@ const getOneChild = async (req, res) => {
 // #3 POST handles request to create new child
 const createOneChild = async (req, res) => {
     try {
+        console.log("are we reading the POST request or no?")
         const db = database.getDb();
         const newChild = {
             username: req.body.username,
         };
         const data = await db.collection('child').insertOne(newChild);
-        res.status(201).json({ message: 'Child created', result });
+        res.status(201).json({ message: 'Child created', data });
     } catch (error) {
         res.status(500).json({ message: 'Server error', error: error.message });
     }

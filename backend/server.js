@@ -4,18 +4,19 @@ const express = require('express');
 const cors = require('cors'); //cors allows frontend to talk to backend
 
 //updated paths to reflect newly modularized MVC pattern 
-// const users = require('./routes/userRoutes');
-const choreRoutes = require('./routes/choreRoutes');
 const childRoutes = require('./routes/childRoutes');
+const choreRoutes = require('./routes/choreRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 const PORT = 3000;
 
 app.use(cors()); //allows requests from react frontend
 app.use(express.json()); //parses incoming json data in request bodies
-//app.use(users);
-app.use("/children", choreRoutes);
+
 app.use("/children", childRoutes);
+app.use("/chores", choreRoutes);
+app.use("/users", userRoutes);
 
 //connect to DB, then start server
 async function startServer() {

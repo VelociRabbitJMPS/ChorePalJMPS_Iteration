@@ -49,9 +49,9 @@
 
 //       axios.post.mockResolvedValue({ data: mockData });
 
-//       const result = await axios.post(`/children/${childId}`);
+//       const  = await axios.post(`/children/${childId}`);
 
-//       expect(result.data).toEqual(mockData);
+//       expect(.data).toEqual(mockData);
 //     });
 //   });
 
