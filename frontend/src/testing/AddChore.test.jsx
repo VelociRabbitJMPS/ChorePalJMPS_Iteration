@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { useDispatch } from 'react-redux';
 import AddChore from '../components/AddChore';
-import { addChore, fetchChores } from '../redux/choreSlice';
+// import { addChore, fetchChores } from '../redux/choreSlice';
 
 //jest.fn() is mock func by jest, it mock the useDispatch n it is replacing the with jest.fn function
 jest.mock('react-redux', () => ({
