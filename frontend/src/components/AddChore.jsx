@@ -34,16 +34,18 @@ const AddChoreForm = ({ day, onClose }) => {
       <h3>Add New Chore for {day.toUpperCase()}</h3>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Chore Name:</label>
+          <label htmlFor='chore-name'>Chore Name:</label>
           <input
+            id='chore-name'
             type='text'
             value={choreName}
             onChange={(e) => setChoreName(e.target.value)}
           />
         </div>
         <div>
-          <label>Child Name:</label>
+          <label htmlFor='child-name'>Child Name:</label>
           <input
+            id='child-name'
             type='text'
             value={childName}
             onChange={(e) => setChildName(e.target.value)}
