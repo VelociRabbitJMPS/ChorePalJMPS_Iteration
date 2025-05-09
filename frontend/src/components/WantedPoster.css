@@ -1,0 +1,33 @@
+.poster-container {
+  position: absolute;
+  top: 0;
+  right: 200px;
+  background-color: #fff3cd; /* lighter background like old paper */
+  border: 2px solid #000;
+  padding: 10px;
+  text-align: center;
+  width: 180px;
+  font-weight: bold;
+  border-radius: 6px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.poster-title {
+  font-size: 1.2rem;
+  color: #8b0000;
+}
+
+.poster-user {
+  font-size: 1.5em;
+  margin: 8px 0;
+  color: #150b06;
+}
+
+.poster-divider {
+  border-top: 1px solid black;
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: #1a1a1a;
+  padding-top: 4px;
+}

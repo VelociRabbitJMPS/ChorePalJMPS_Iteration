@@ -1,78 +1,41 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import AddChoreForm from './AddChore';
+import { useDispatch } from 'react-redux';
+import { completeChore, deleteChore } from '../redux/choreSlice';
 
 const DayCard = ({ day, chores }) => {
   const [showAddForm, setShowAddForm] = useState(false);
-  // const [selectedValue, setSelectedValue] = useState(null);
-  const [choreList, setChoreList] = useState(chores);
 
-  useEffect(() => {
-    setChoreList(chores);
-  }, [chores]);
-
-  const handleDropdownChange = async (e, choreId) => {
+  const dispatch = useDispatch();
+  const handleDropdownChange = async (e, chore) => {
     const value = e.target.value;
     if (value === 'Completed') {
-      const updatedChore = choreList.find((chore) => chore._id === choreId);
-      if (!updatedChore) return;
-
-      const choreWithUpdatedStatus = {
-        ...updatedChore,
-        isCompleted: true,
-        status: 'Completed',
-      };
-
-      setChoreList((prevChores) =>
-        prevChores.map((chore) =>
-          chore._id === choreId ? choreWithUpdatedStatus : chore
-        )
-      );
-      try {
-        const response = await fetch(
-          `http://localhost:3000/chores/${choreId}`,
-          {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(choreWithUpdatedStatus),
-          }
-        );
-        if (!response.ok) {
-          throw new Error('Failed to update chore');
-        }
-      } catch (error) {
-        console.error(`Error: ${error.message}`);
-      }
-    }
-    if (value === 'Delete') {
-      setChoreList((prevChores) =>
-        //update the UI by removing the chores locally
-        prevChores.filter((chore) => chore._id !== choreId)
-      );
-      //delete chore from the database
-      await fetch(`http://localhost:3000/chores/${choreId}`, {
-        method: 'DELETE',
-      });
+      //completeChore and deleteChore are calling from redux, choreSlice
+      dispatch(completeChore(chore));
+    } else if (value === 'Delete') {
+      dispatch(deleteChore(chore._id));
     }
   };
+
   return (
-    <div className='bg-primaryDark text-white rounded-2xl shadow-lg p-5 flex flex-col gap-5 mt-6 w-96'>
+    <div className='bg-linear-to-r from-gray-300 via-gray-500 to-gray-700 text-blue-900 rounded-2xl shadow-lg p-5 flex flex-col gap-5 mt-6 w-90'>
       <h3 className='text-2xl font-bold tracking-wide'>{day.toUpperCase()}</h3>
 
       <div className='bg-surfaceLight rounded-xl p-4 flex flex-col gap-3'>
         {chores.length > 0 ? (
           <ul className='list-disc list-inside text-primaryDark space-y-1'>
-            {choreList.map((chore) => (
+            {chores.map((chore) => (
               <li
                 key={chore._id}
                 className={`text-base font-semibold ${
                   chore.status === 'Completed'
-                    ? 'text-green-500'
-                    : 'text-accentOrange'
+                    ? 'text-green-900'
+                    : 'text-orange-800'
                 }`}
               >
                 {chore.childName} – {chore.choreName} -
                 <select
-                  onChange={(e) => handleDropdownChange(e, chore._id)}
+                  onChange={(e) => handleDropdownChange(e, chore)}
                   value={chore.status}
                 >
                   <option
@@ -88,7 +51,7 @@ const DayCard = ({ day, chores }) => {
             ))}
           </ul>
         ) : (
-          <p className='text-sm text-white/70 italic'>No chores assigned.</p>
+          <p className='text-sm text-black/70 italic'>No chores assigned.</p>
         )}
 
         <button
