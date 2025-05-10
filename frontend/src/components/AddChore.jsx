@@ -4,8 +4,6 @@ import { useDispatch } from 'react-redux';
 import { fetchChores } from '../redux/choreSlice';
 import { getImageFilenameForChore } from '../utils/choreImageMap';
 
-
-
 const AddChoreForm = ({ day, onClose }) => {
   const [choreName, setChoreName] = useState('');
   const [childName, setChildName] = useState('');
@@ -15,7 +13,10 @@ const AddChoreForm = ({ day, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (choreName.trim() === '' || childName.trim() === '') {
+      alert('Please fill in both fields.');
+      return;
+    }
     const imageFilename = getImageFilenameForChore(choreName);
 
     const formData = {
@@ -40,32 +41,38 @@ const AddChoreForm = ({ day, onClose }) => {
 
   return (
     <div className='bg-white p-4 rounded shadow-md mt-4'>
-      <h2 className='text-lg font-bold mb-2'>Add Chore for {day}</h2>
+      <h3>Add New Chore for {day.toUpperCase()}</h3>
       <form onSubmit={handleSubmit} className='flex flex-col gap-3'>
-        <input
-          type='text'
-          placeholder='Chore name (e.g., Do the dishes)'
-          value={choreName}
-          onChange={(e) => setChoreName(e.target.value)}
-          className='border p-2 rounded'
-          required
-        />
-        <input
-          type='text'
-          placeholder="Child's name"
-          value={childName}
-          onChange={(e) => setChildName(e.target.value)}
-          className='border p-2 rounded'
-          required
-        />
-        <label className='flex items-center gap-2'>
+        <div>
+          <label htmlFor='chore-name'>Chore Name:</label>
           <input
-            type='checkbox'
-            checked={isWeekly}
-            onChange={(e) => setIsWeekly(e.target.checked)}
+            id='chore-name'
+            type='text'
+            value={choreName}
+            onChange={(e) => setChoreName(e.target.value)}
+            className='border p-2 rounded'
+            required
           />
-          Weekly chore?
-        </label>
+        </div>
+        <div>
+          <label htmlFor='child-name'>Child Name:</label>
+          <input
+            id='child-name'
+            type='text'
+            value={childName}
+            onChange={(e) => setChildName(e.target.value)}
+            className='border p-2 rounded'
+            required
+          />
+          <label className='flex items-center gap-2'>
+            <input
+              type='checkbox'
+              checked={isWeekly}
+              onChange={(e) => setIsWeekly(e.target.checked)}
+            />
+            Weekly chore?
+          </label>
+        </div>
         <div className='flex gap-2'>
           <button
             type='submit'
