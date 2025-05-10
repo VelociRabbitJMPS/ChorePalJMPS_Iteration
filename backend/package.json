@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "connect.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "keywords": [],
   "author": "",
