@@ -33,7 +33,7 @@
 }
 
 body {
-  background-color: #0a2540; /* Navy*/
+  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
 }
 
 /* h1 {
@@ -55,12 +55,12 @@ button {
 @media (prefers-color-scheme: light) {
   :root {
     color: #143e61; /* Primary Dark */
-    background-color: #0a2540; /* White background */
+    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
   }
   a:hover {
     color: #dc6939; /* Accent Orange */
   }
   button {
-    background-color: #5fbfcb; /* Accent Teal */
+    background-color: #13547a; /* Accent Teal */
   }
 }
