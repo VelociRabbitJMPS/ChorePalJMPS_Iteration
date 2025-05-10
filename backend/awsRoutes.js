@@ -1,6 +1,10 @@
 const express = require('express');
 const multer = require('multer');
-const { S3Client, PutObjectCommand, GetObjectCommand } = require('@aws-sdk/client-s3');
+const {
+  S3Client,
+  PutObjectCommand,
+  GetObjectCommand,
+} = require('@aws-sdk/client-s3');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 require('dotenv').config();
@@ -17,7 +21,6 @@ const s3Client = new S3Client({
     secretAccessKey: process.env.AWS_SECRET_KEY,
   },
 });
-
 
 // 🖼️ Retrieve image from S3 and return base64
 awsRoutes.get('/images/:filename', async (req, res) => {
@@ -80,6 +83,3 @@ module.exports = awsRoutes;
 //     res.status(500).json({ error: 'Failed to upload chore', details: err.message });
 //   }
 // });
-
-
-
