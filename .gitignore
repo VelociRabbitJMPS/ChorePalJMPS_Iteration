@@ -24,6 +24,7 @@ lerna-debug.log*
 
 # Ignore environment variable files
 *.env
+backend/config.env
 
 # Ignore editor settings and system files
 .vscode/

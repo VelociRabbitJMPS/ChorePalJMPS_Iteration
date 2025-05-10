@@ -83,12 +83,13 @@
 
 /*Integration Testing version*/
 
-const express = require('express'); //Imports the Express framework to create a mock server for testing.
+// const request = require('supertest');'
+const express = require('express');
 
-const request = require('supertest'); //Imports supertest, a tool to simulate HTTP requests in tests.
-const { ObjectId } = require('mongodb');  //Imports MongoDB's ObjectId to create or compare MongoDB document IDs.
+const request = require('supertest');
+const { ObjectId } = require('mongodb');
 
-// // Mock data for testing GET and PUT child routes
+// // Mock data for child routes
 const mockChildData = {
   _id: new ObjectId('60d21b17a1b2c3d4e5f6a7b8'),
   name: 'John Doe',
@@ -111,7 +112,7 @@ const mockChildCollection = {
 // // Mocking the database connection for testing
 jest.mock('../connect', () => ({
   getDb: jest.fn().mockReturnValue({
-    collection: () => mockChildCollection, 
+    collection: () => mockChildCollection, // 👈 Fix is here
   }),
   connectToServer: jest.fn().mockResolvedValue(true),
 }));
