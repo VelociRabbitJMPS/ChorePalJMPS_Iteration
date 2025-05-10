@@ -73,3 +73,17 @@ Hello hello, my fellow pink fairy armadillos!
    ```
    - Make sure it says 'Able to merge' before submitting the pull request!
    8. Congratulations! Nicely done!
+  
+#VelociRabit  #IterationProject
+Sandar, Michal, Jamila, Peter
+Below is our goal
+
+1)Store chore updates when added, deleted, completed, etc, add pop-up or drop-down menu for these features
+2)Backend needs to store icons (chores, per child) to be rendered in the browser
+3)Improve modularity of controllers and routes
+4)Add a feature to notify child of undone chores (wanted poster!)
+5)Progress tracker with avatar
+
+We did all of that also testing in some of frontend and backend
+
+
